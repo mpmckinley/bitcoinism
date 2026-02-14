@@ -1,0 +1,273 @@
+body {
+    font-family: Georgia, serif;
+    line-height: 1.6;
+    color: #dfdff8;
+    background: #14193a;
+    margin: 0;
+    max-width: 800px;
+    margin: 0 auto; /* Centers content */
+    padding: 50px 20px;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 3em;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-family: sans-serif;
+    margin: 10px 0;
+}
+
+.author {
+    font-style: italic;
+    margin: 10px 0;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+h3, h4, h5 {
+    font-family: sans-serif;
+}
+
+blockquote {
+    font-style: italic;
+    color: #666;
+}
+
+.quote {
+    border-left: 4px solid #ccc;
+    padding-left: 20px;
+    color: #F7931A; /* Orange for IRC quote, like in your screenshot */
+}
+
+.quote_mute {
+    color: #b4b4b4;
+    text-align: center;
+
+}
+
+.word-count {
+    font-size: 0.9em;
+    color: #666;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 80px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+}
+
+/* Navbar Styles - Fixed top, elegant, nested dropdowns */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(20, 25, 58, 0.95); /* Semi-transparent dark to match body bg */
+    backdrop-filter: blur(8px); /* Subtle glass effect for elegance */
+    border-bottom: 1px solid rgba(223, 223, 248, 0.1);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #F7931A;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: #ff6600; /* Orange accent on hover */
+}
+
+.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item a {
+    color: #dfdff8;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: #F7931A;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #14193a;
+    border: 1px solid rgba(223, 223, 248, 0.15);
+    border-radius: 6px;
+    min-width: 180px;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    margin-top: 0.5rem;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 102, 0, 0.1);
+    color: #F7931A;
+}
+
+/* Mobile: Stack nav items vertically if screen small */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .dropdown-menu {
+        position: static;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 1.5rem;
+    }
+    .dropdown:hover .dropdown-menu {
+        display: block; /* Still shows on hover/tap */
+    }
+}
+
+/* Add padding to main content so it doesn't hide under fixed nav */
+body {
+    padding-top: 80px; /* Adjust based on nav height; ~70-80px typical */
+}
+
+/* Bitcoin is... Teaser Grid – Always 2x2 (2 columns), full width, responsive stack only on tiny mobile */
+.teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Always 2 equal columns */
+    grid-auto-rows: minmax(300px, auto);   /* Ensures rows are at least tall enough */
+    gap: 2.5rem;                           /* Generous space between cards */
+    margin: 4rem auto;
+    padding: 0 5%;                         /* Full-width feel with edge breathing room */
+    max-width: none;                       /* Remove any max-width limit – go full container width */
+    width: 100%;
+}
+
+.teaser-column {
+    background: rgba(20, 25, 58, 0.85);
+    border: 1px solid rgba(247, 147, 26, 0.2);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;        /* Pushes content evenly, link at bottom */
+    min-height: 380px;                     /* Forces equal card height across 2x2 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.teaser-column:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(247, 147, 26, 0.25);
+}
+
+.teaser-column h3 {
+    font-size: 2.4rem;
+    color: #F7931A;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.teaser-column p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    flex-grow: 1;                          /* Text fills space evenly */
+}
+
+/* Only stack to single column on very small screens (e.g., phones in portrait) */
+@media (max-width: 600px) {
+    .teaser-grid {
+        grid-template-columns: 1fr;        /* 1 column only below ~600px */
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    .teaser-column {
+        min-height: auto;                  /* Content-driven height on mobile */
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Optional: Tighter gap on midsize screens if needed */
+@media (max-width: 900px) {
+    .teaser-grid {
+        gap: 2rem;
+        padding: 0 3%;
+    }
+}
