@@ -15,9 +15,10 @@ header {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2em;
     font-family: sans-serif;
     margin: 0;
+    color: #F7931A;
 }
 
 h2 {
@@ -42,6 +43,17 @@ h3, h4, h5 {
 blockquote {
     font-style: italic;
     color: #666;
+}
+
+p.center {
+    text-align: center;
+}
+
+p.citation {
+    font-size: 0.9em;
+    color: #666;
+    text-align: right;
+    margin-top: -10px;
 }
 
 .quote {
@@ -84,24 +96,24 @@ footer {
         padding: 20px 10px;
     }
     h1 {
-        font-size: 2.5em;
+        font-size: 1.5em;
+        color: #F7931A;
     }
 }
 
-/* Navbar Styles - Fixed top, elegant, nested dropdowns */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(20, 25, 58, 0.95); /* Semi-transparent dark to match body bg */
-    backdrop-filter: blur(8px); /* Subtle glass effect for elegance */
+    background: rgba(20, 25, 58, 0.95); /* Semi-transparent dark */
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(223, 223, 248, 0.1);
     z-index: 1000;
 }
 
 .nav-container {
-    max-width: 800px;
+    max-width: 1400px; /* Wider for better desktop spread */
     margin: 0 auto;
     padding: 1rem 2rem;
     display: flex;
@@ -109,17 +121,43 @@ footer {
     align-items: center;
 }
 
+/* Tighten logo + text gap */
 .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
     color: #F7931A;
     font-family: sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    text-decoration: none;
     transition: color 0.3s ease;
 }
 
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;           /* Controls the space between icon and text – adjust to taste (0.3rem for tighter) */
+}
+
+.nav-logo-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;        /* Prevents icon from shrinking */
+    display: block;
+}
+
+.nav-logo span {
+    line-height: 1;        /* Aligns text vertically with icon */
+}
+
+/* Hover effect on whole logo */
 .nav-logo:hover {
-    color: #ff6600; /* Orange accent on hover */
+    color: #FFB74D;
+}
+
+/* Optional: If icon is SVG, ensure color inheritance */
+.nav-logo-icon path {
+    fill: currentColor;    /* Makes icon match text color on hover */
 }
 
 .nav-menu {
@@ -127,16 +165,17 @@ footer {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .nav-item {
     position: relative;
+    list-style: none !important;
 }
 
 .nav-item a {
     color: #dfdff8;
-    text-decoration: none;
+    text-decoration: none !important;
     font-family: sans-serif;
     font-size: 1.1rem;
     transition: color 0.3s ease;
@@ -153,38 +192,43 @@ footer {
     top: 100%;
     left: 0;
     background: #14193a;
-    border: 1px solid rgba(223, 223, 248, 0.15);
-    border-radius: 6px;
-    min-width: 180px;
+    border: 1px solid rgba(247, 147, 26, 0.2);
+    border-radius: 8px;
+    min-width: 220px;
     padding: 0.5rem 0;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-    margin-top: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-.dropdown-menu li {
-    margin: 0;
-}
-
-.dropdown-menu a {
+.dropdown-menu li a {
     display: block;
-    padding: 0.75rem 1.25rem;
+    padding: 0.8rem 1.2rem;
     font-size: 1rem;
 }
 
-.dropdown-menu a:hover {
-    background: rgba(255, 102, 0, 0.1);
-    color: #F7931A;
+.dropdown-menu li a:hover {
+    background: rgba(247, 147, 26, 0.15);
 }
 
-/* Mobile: Stack nav items vertically if screen small */
+/* Prevent right-side cutoff: flip last two dropdowns to open leftward */
+.nav-menu > .nav-item:nth-last-child(-n+3) .dropdown-menu {
+    left: auto;
+    right: 0;                /* Align to right edge of parent */
+}
+
+/* Optional: Add a bit more breathing room or adjust width if menus are long */
+.dropdown-menu {
+    min-width: 220px;        /* Ensure enough width for text */
+    white-space: nowrap;     /* Prevent wrapping inside menu items */
+}
+
+/* Mobile stack */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
-        padding: 1rem;
     }
     .nav-menu {
         flex-direction: column;
@@ -198,14 +242,11 @@ footer {
         background: transparent;
         padding-left: 1.5rem;
     }
-    .dropdown:hover .dropdown-menu {
-        display: block; /* Still shows on hover/tap */
-    }
 }
 
-/* Add padding to main content so it doesn't hide under fixed nav */
+/* Content padding for fixed nav */
 body {
-    padding-top: 80px; /* Adjust based on nav height; ~70-80px typical */
+    padding-top: 80px; /* Adjust to your nav height */
 }
 
 /* Bitcoin is... Teaser Grid – Always 2x2 (2 columns), full width, responsive stack only on tiny mobile */
@@ -218,6 +259,7 @@ body {
     padding: 0 5%;                         /* Full-width feel with edge breathing room */
     max-width: none;                       /* Remove any max-width limit – go full container width */
     width: 100%;
+    align-items: stretch;
 }
 
 .teaser-column {
@@ -270,4 +312,40 @@ body {
         gap: 2rem;
         padding: 0 3%;
     }
+}
+
+details {
+    cursor: pointer;
+}
+
+summary {
+    list-style: none; /* Remove default arrow */
+    outline: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+.expanded-content {
+    padding: 1.5rem 0 1rem;
+    border-top: 1px solid rgba(247, 147, 26, 0.15);
+}
+
+details[open] summary h3 {
+    color: #FFB74D; /* Lighter orange when open */
+}
+
+.back-to-top {
+    display: block;
+    text-align: right;
+    color: #F7931A;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+}
+
+.header-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
 }
