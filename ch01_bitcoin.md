@@ -1,3 +1,5 @@
+Source: https://github.com/lawmaster10/howcryptoworksbook
+
 # Chapter I: A Comprehensive Introduction to Bitcoin
 
 ## Section I: Bitcoin Core Concepts
